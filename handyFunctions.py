@@ -9,7 +9,7 @@
     - central_date: Find the central date between the two given dates.
     - calc_mag_dec: Calculate magnetic declination.
     - uv2intdir and intdir2uv: Convert zonal and meridional velocity components
-                               into velocity speed and direction, and vice versa,
+                               into velocity speed and direction and vice versa,
                                respectively.
     - dirstats: Calculate basic statistics of directional data.
 
