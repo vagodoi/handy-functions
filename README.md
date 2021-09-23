@@ -13,10 +13,4 @@ Simple functions that may assist in the analysis of meteorological and oceanogra
                  velocity components.
     - dirstats: Calculate basic statistics of directional data.
 
-You will need the following python libs installed:
-    - numpy
-    - datetime
-    - pandas
-    - scipy
-    - geopy
-    - magnetic-field-calculator
+You will need the following python libs installed: numpy, datetime, pandas, scipy, geopy, and magnetic-field-calculator
