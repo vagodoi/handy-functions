@@ -30,7 +30,7 @@ def calc_dist(lon1, lat1, lon2, lat2):
         dist (float): Distance between the two sites (in metres).
     '''
     from geopy import distance
-    dist = distance.distance((lon1, lat1), (lon2, lat2)).m
+    dist = distance.distance((lat1, lon1), (lat2, lon2)).m
     return dist
 
 
