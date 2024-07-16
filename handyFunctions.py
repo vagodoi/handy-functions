@@ -102,20 +102,26 @@ def calc_mag_dec(lon, lat, date, altitude=0):
     return declination
 
 
-def uv2intdir(u, v, mag_decl=0.):
-    '''
+def uv2intdir(u, v, data_type, mag_decl=0.0):
+    """
     Convert zonal and meridional velocity components into speed and direction.
-    If you do not wish to apply the magnetic declination correction, leave
-    "mag_decl" as is.
+    If you do not wish to apply the magnetic declination correction, do not
+    assign any values to "mag_decl".
     Input:
-        u (float): Zonal velocity component.
-        v (float): Meridional velocity component.
+        u (float or pandas.core.series.Series): Zonal velocity component.
+        v (float or pandas.core.series.Series): Meridional velocity component.
+        data_type (string): Specify the data type. Choose among "current",
+                            "wind", and "wave".
         mag_decl (float): Magnetic declination.
     Output:
-        spd, direc (tuple): Velocity speed and direction, respectively.
-    '''
+        spd (float or pandas.core.series.Series): Velocity speed.
+        direc (float or pandas.core.series.Series): Velocity direction.
+    """
     spd = np.sqrt(u**2 + v**2)
-    direc = np.mod(90 - (np.rad2deg(np.arctan2(v, u)) - mag_decl), 360)
+    if data_type.lower() == "current":
+        direc = np.mod(90 - (np.rad2deg(np.arctan2(v, u)) - mag_decl), 360)
+    else:
+        direc = np.mod(270 - (np.rad2deg(np.arctan2(v, u)) - mag_decl), 360)
     return spd, direc
 
 
