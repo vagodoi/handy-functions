@@ -125,19 +125,25 @@ def uv2intdir(u, v, data_type, mag_decl=0.0):
     return spd, direc
 
 
-def intdir2uv(spd, direc):
+def intdir2uv(spd, direc, data_type):
     '''
     Convert velocity speed and direction into zonal and meridional velocity
     components.
     Input:
         spd (float): Velocity speed.
         direc (float): Velocity direction.
+        data_type (string): Specify the data type. Choose among "current",
+                            "wind", and "wave".
     Ouput:
         u, v (tuple): Zonal and meridional velocity components, respectively.
     '''
     ang = np.deg2rad(direc)
-    u = spd * np.sin(ang)
-    v = spd * np.cos(ang)
+    if data_type.lower() == "current":
+        u = spd * np.sin(ang)
+        v = spd * np.cos(ang)
+    else:
+        u = spd * np.sin(ang) * (-1)
+        v = spd * np.cos(ang) * (-1)
     return u, v
 
 
