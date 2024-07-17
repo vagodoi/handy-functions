@@ -138,12 +138,11 @@ def intdir2uv(spd, direc, data_type):
         u, v (tuple): Zonal and meridional velocity components, respectively.
     '''
     ang = np.deg2rad(direc)
-    if data_type.lower() == "current":
-        u = spd * np.sin(ang)
-        v = spd * np.cos(ang)
-    else:
-        u = spd * np.sin(ang) * (-1)
-        v = spd * np.cos(ang) * (-1)
+    u = spd * np.sin(ang)
+    v = spd * np.cos(ang)
+    if data_type.lower() != "current":
+        u *= -1
+        v *= -1
     return u, v
 
 
